@@ -1,0 +1,37 @@
+
+importar base de datos con informacion en laravel
+https://medium.com/@suhkha/laravel-import-sql-file-with-a-custom-command-139fb8a84ad
+https://youtu.be/IvQDxXHmu-E?list=PLxFwlLOncxFLazmEPiB4N0iYc3Dwst6m4
+https://www.youtube.com/watch?v=IDVrgMabqPQ&list=PLX54xtp5Ni0vOacVQ8PG_DQ3-KZMN6o3x
+https://www.youtube.com/watch?v=RD8e0vOWgoE&list=PL8p2I9GklV47fi-yiWkfRpbMV8PPaQDH4&index=14
+
+
+debugear con php:
+https://www.youtube.com/watch?v=Fv3nGbVGVd0
+
+How to properly deploy Laravel in Shared Hosting (2019)
+https://web.archive.org/web/20170816200145/https://stackoverflow.com/documentation/laravel/2410/deploy-laravel-5-app-on-shared-hosting-on-linux-server#t=201708162001451393879
+https://stackoverflow.com/questions/44868393/laravel-shared-hosting-routes-not-working-properly
+https://www.darwinbiler.com/how-to-properly-deploy-laravel-in-shared-hosting-2019
+https://medium.com/staybusyng/deploying-laravel-to-a-shared-hosting-with-ssh-75b803b3d264
+https://dev.to/asapabedi/deploying-laravel-5-applications-on-shared-hosting-without-the-use-of-ssh--16a6
+
+How to redirect to a route in laravel 5 by using href tag if I'm not using blade or any template?
+https://stackoverflow.com/questions/34081841/how-to-redirect-to-a-route-in-laravel-5-by-using-href-tag-if-im-not-using-blade
+
+Extending A Laravel View In A Parent Folder
+https://stackoverflow.com/questions/34415730/extending-a-laravel-view-in-a-parent-folder
+
+Laravel 6 not finding css files
+https://stackoverflow.com/questions/28214499/laravel-5-not-finding-css-files
+
+CSS Background Image Not Displaying
+https://stackoverflow.com/questions/14029277/css-background-image-not-displaying/14029319
+
+Set the page title
+https://laravel.io/forum/04-04-2016-set-the-page-title
+
+Composer killed while updating
+https://stackoverflow.com/questions/20667761/composer-killed-while-updating
+
+

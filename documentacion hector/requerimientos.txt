@@ -1,0 +1,57 @@
+Portal informativo/interactivo de corredores de inmuebles
+
+Tipos de usuario:
+Administrador
+Corredor
+cliente final
+
+Politicas:
+Cualquier usuario: hace de todo, podra ver toda la informacion de cada corredor y ademas editarla (explicada abajo en Informacion a visualizar de cada corredor)
+El adminitrador: entre otras caracteristicas descargara periodicamente la informacion 
+actualizada proveniente de la junta tecnica del estado de los corredores. 
+(Como la junta tecnica provee la informacion de quien esta y quien no esta activo 
+debe hacerse una especie de interface en la cual se pueda descargar toda esa informacion
+en nuestra base de datos y actualizar los estados de todos los corredores de manera periodica
+esta seria una funcion que solo podra hacer el administrador)
+Los usuarios cliente final no necesita registrarse para hacer todo lo descrito.
+
+Informacion a visualizar de cada corredor:
+El numero de la licencia 
+Nombre 
+Fecha de emision y vencimiento 
+Estado de activo o inactivo  (la junta tecnica provee la informacion de quien lo esta y quien no)
+Reputacion 
+Email 
+		
+
+Cualquier usuario luego de buscar a un corredor podra entrar y visualizar su perfil:
+en los que podra ver: 
+El numero de la licencia 
+Nombre 
+Fecha de emision y vencimiento 
+Estado de activo o inactivo  (la junta tecnica provee la informacion de quien lo esta y quien no)
+Reputacion 
+Email 
+Y
+Comentarios que han dejado los demas usuarios a este corredor.	
+Valor agregado a mostrar: Años como corredor (a ser determinado como hacerlo)
+Valor agregado a mostrar: % de clientes que lo recomiendan  (a ser determinado como hacerlo)
+Valor agregado a mostrar: Numero de ventas concretadas  (a ser determinado como hacerlo)
+Ademas podra calificar o dejar algun nuevo comentario.
+
+
+Acerca de la calificacion o reputacion:
+Estara basada en un esquema de 5 estrellas como maximo.
+Cada usuario calificara con 1 a 5 estrellas segun su criterio a cada corredor asi.
+Ademas dira el porcentaje de recomendacion de este corredor.
+Al entrar a cada corredor la calificacion que se mostrara sera el promedio de todas las calificaciones obtenidas.
+
+
+Al abrir la pagina inicial sale un boton de buscar en las que cualquier tipo de usuario colocara cualquier parte de un corredor
+bien sea licencia o nombre para asi arrojar una lista con los posibles corredores alli luego de el usuario conseguir al que busca
+podra hacer click para entrar en dicho corredor y ver y hacer todo lo descrito arriba.
+
+nota: La fianza es un pago de un seguro obligatorio
+
+Preguntas: En que momento un cliente o corredor califica a un corredor?
+

@@ -96,7 +96,7 @@ class ChecknaturalesController extends Controller
       
         $naturales = Naturales::where('id_natural', $request->input('elid'))->first();
         $nolicnat = $naturales->no_lic_pn;
-        $rankings = Naturales_ranking::where('no_lic_corredor', $nolicnat)->get();
+        $rankings = Naturales_ranking::where('no_lic_corredor', $nolicnat)->orderBy('created_at','desc')->get();
        //dd($naturales);
       //  $adminRole = Role::where('name','admin')->first();
 

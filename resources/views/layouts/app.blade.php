@@ -13,7 +13,7 @@
   <title>{{ config('app.name', 'Laravel') }}</title>
 
   <!-- Scripts -->
-   <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+  <script src="{{ asset('/js/app.js') }}"></script> 
 
   <!-- Page level plugin CSS-->
   <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
@@ -35,6 +35,9 @@
 
   <!-- Custom styles for this template -->
   <link href="./css/app.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/bootstrap-slider.min.css" rel="stylesheet">
 
 </head>
 
@@ -77,7 +80,8 @@
      <script src="./js/admin/demo/chart-bar-demo.js"></script>
      <script src="./js/admin/demo/chart-pie-demo.js"></script>
 
-
+     <script src="./js/bootstrap-slider.min.js"></script>
+   
 
     
  

@@ -41,7 +41,7 @@ class CalificanaturalesController extends Controller
      */
     public function store(Request $request)
     {
-       // dd($request);
+      //  dd($request);
        $user = Auth::user();
 
         $naturales_ranking = new Naturales_ranking;

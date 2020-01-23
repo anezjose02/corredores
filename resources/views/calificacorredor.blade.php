@@ -12,8 +12,9 @@
             <div class="col-lg-12 order-lg-1 my-auto showcase-text">
              <form action="calificanaturalescontrollerupdate" method="POST">
                   <h3>Califica a: {{$data['nombre_to_calificate']}} </h3>
-                  <h4>Numero de licencia: {{$data['no_lic_to_calificate']}}   </h4> 
-                    <p class="lead mb-0"> 
+                  <h6>Numero de licencia: {{$data['no_lic_to_calificate']}}   </h6> 
+                
+                  <p class="lead mb-0"> Estrellas:
                         <input type="hidden" name="el_no_lic_pn" value=  {{$data['no_lic_to_calificate']}}  >
                         <input type="hidden" id="rating0" name="rating" value="0" />
 
@@ -30,9 +31,26 @@
                           <input type="radio" id="rating1" name="rating" value="1" /><label class="half" for="rating1" title="1/2 star"></label>
                       </fieldset>
                   </p>
-                  @php
-                     
-                  @endphp
+            
+                  <div class="form-row">
+                        <div class="col-12 col-md-2 mb-2 mb-md-0">
+                              <p> % Recomendacion:</p>
+                        </div>
+                        <div class="col-12 col-md-3">
+                              <input
+                              type="text"
+                              name="el_porcentaje"
+                              data-provide="slider"
+                              data-slider-ticks="[0, 20, 40, 60,80,100]"
+                              data-slider-ticks-labels='["0%", "20%", "40%","60%","80%","100%"]'
+                              data-slider-min="1"
+                              data-slider-max="100"
+                              data-slider-step="20"
+                              data-slider-value="40"
+                              data-slider-tooltip="hide"
+                          >
+                        </div>
+                     </div>
                  
                   <h3> Comentario: </h3>
                   <div>
@@ -40,9 +58,13 @@
                       @csrf 
                   </div>
                   
-                  <h4> Pocentaje de recomendacion:  <input type="number" name="el_porcentaje" step="5" max=100 style="max-width:100px;">%</h4>
+                  <br>
+    
+
+          
+                
                   
-                  <div class="col-3">
+                  <div class="col-2">
                       <button type="submit" class="btn btn-block btn-primary"><i class="fa fa-check"></i>Enviar!</button>
                   </div>
                  
@@ -56,6 +78,8 @@
         <style>
                       /* Base setup */
             @import url(//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css);
+
+          
 
             /* Ratings widget */
             .rate {
@@ -96,5 +120,7 @@
             input:checked ~ label:hover ~ label, /* highlight previous selected stars for new rating */
             label:hover ~ input:checked ~ label /* highlight previous selected stars */ { color: #A6E72D;  } 
         </style>
+
+      
       </section>
 @endsection

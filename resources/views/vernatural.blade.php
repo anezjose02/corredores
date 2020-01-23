@@ -49,9 +49,23 @@
                                         <p class="text-secondary">3 Años</p>
                                 </div>
                                 <div class="work mb-4">
-                                        <strong class="h5 d-block text-secondary font-weight-bold mb-1">Porcentaje de clientes que lo recomiendan</strong>
+                                        <strong class="h5 d-block text-secondary font-weight-bold mb-1">Porcentaje promedio de clientes que lo recomiendan</strong>
                                         {{-- <strong class="h6 d-block text-warning mb-1">Venta Directa</strong> --}}
-                                        <p class="text-secondary">80%</p>
+                                        <p class="text-secondary">
+                                            @php
+                                                $num = 0;
+                                                $counter = 0;
+                                                foreach($rankings as $ranking)
+                                                {
+                                                    $num = $num + $ranking->recomendacion;
+                                                    $counter =  $counter + 1;
+                                                }
+                                                if($counter != 0) 
+                                                    $num = $num / $counter;
+                                                echo round($num, 2); 
+                                            @endphp
+                                         %</p>
+
                                 </div>
                                 <div class="work mb-4">
                                             <strong class="h5 d-block text-secondary font-weight-bold mb-1">Numero de negocios concretados</strong>
@@ -60,29 +74,7 @@
                                  </div>
                     </div>    
                 </section>
-                {{-- <section class="mb-5 mb-md-0">
-                    <h3 class="h6 font-weight-light text-secondary text-uppercase">Skills</h3>
-                    <div class="skills pt-1 row">
-                        <div class="col-4 mb-2">
-                            <div class="chart" data-percent="95" data-scale-color="#fff"><span>PHP</span></div>
-                        </div>
-                        <div class="col-4 mb-2">
-                            <div class="chart" data-percent="85" data-scale-color="#fff"><span>Ruby</span></div>
-                        </div>
-                        <div class="col-4 mb-2">
-                            <div class="chart" data-percent="90" data-scale-color="#fff"><span>Java</span></div>
-                        </div>
-                        <div class="col-4 mb-2">
-                            <div class="chart" data-percent="82" data-scale-color="#fff"><span>Python</span></div>
-                        </div>
-                        <div class="col-4 mb-2">
-                            <div class="chart" data-percent="70" data-scale-color="#fff"><span>C++</span></div>
-                        </div>
-                        <div class="col-4 mb-2">
-                            <div class="chart" data-percent="60" data-scale-color="#fff"><span>ASP</span></div>
-                        </div>
-                    </div>
-                </section> --}}
+  
             </div>
         </div>
         <div class="col-md-8">
@@ -233,36 +225,63 @@
 
                 <div class="tab-content py-4" id="myTabContent">
                     <div class="tab-pane py-3 fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                           
-                        @forelse($rankings as $ranking)
-                        <div class="col-lg-12 order-lg-1 my-auto showcase-text">
-                                
-                                <h5>Un usuario califico:
-                               
-                                       @php
-                                       $num = $ranking->calificacion;
-                                       $intpart = floor( $num );    // results in 3
-                                       $fraction = $num - $intpart; // results in 0.5
-                                       $numerochecked = $intpart;
-                                       if ($fraction == 0)  $numeroNOchecked = 5 - ($intpart); 
-                                       else  $numeroNOchecked = 5 - ($intpart) - 1; 
-                                       @endphp
-                                       @for ($i = 0; $i < $numerochecked; $i++)
-                                           <span class="fa fa-star checked"></span>
-                                       @endfor
-                                       @if ($fraction != 0)
-                                           <span class="fa fa-star-half checked"></span> 
-                                       @endif
-                                       @for ($i = 0; $i < $numeroNOchecked; $i++)
-                                           <span class="fa fa-star"></span>
-                                       @endfor
-                                        {{ "(".$ranking->calificacion.")"}}
-                                   </h5>
-                                   <p class="lead mb-0">..y comento: "{{ $ranking ->user_qualifier_comment }} "</p>
-                           </div>
-                        @empty
-                            <h5>El usario no posee comentarios ni calificaciones</h5>
-                        @endforelse
+                            <div class="card">
+                                @forelse($rankings as $ranking)
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <img src="./images/def_face.jpg" class="img img-rounded img-fluid"/>
+                                                <p class="text-secondary text-center">{{ $ranking->created_at->diffForHumans() }} </p>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <p>
+                                                    <a class="float-left" href="#"><strong>Un usuario anonimo comento y califico:</strong></a>
+                                                    @php
+                                                        $num = $ranking->calificacion;
+                                                        $intpart = floor( $num );    // results in 3
+                                                        $fraction = $num - $intpart; // results in 0.5
+                                                        $numerochecked = $intpart;
+                                                        if ($fraction == 0)  $numeroNOchecked = 5 - ($intpart); 
+                                                        else  $numeroNOchecked = 5 - ($intpart) - 1; 
+                                                    @endphp
+
+                                                    <a class="float-right"><strong> {{ "(".$ranking->calificacion.")"}}</strong></a>
+
+                                                    @for ($i = 0; $i < $numeroNOchecked; $i++)
+                                                        <span class="float-right"><i class="fa fa-star"></i></span>
+                                                    @endfor
+ 
+                                                    @if ($fraction != 0)
+                                                        <span class="float-right"><i class="fa fa-star-half checked"></i></span>
+                                                    @endif
+
+                                                    @for ($i = 0; $i < $numerochecked; $i++)
+                                                    <span class="float-right"><i class="fa fa-star checked"></i></span>
+                                                     @endfor
+                                               </p>
+                                               <div class="clearfix"></div>
+                                                <p><i>"{{ $ranking ->user_qualifier_comment }}."</i></p>
+                                                <p><i>"Lo recomiendo {{ $ranking ->recomendacion }}%!"</i></p>
+                                            </div>
+                                        </div> 
+                                      <br>
+                                    </div>
+                                @empty
+                                    
+                                    <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <p>
+                                                        <a class="float-left" href="#"><strong>El usario no posee comentarios ni calificaciones</strong></a>
+                                                   </p>
+                                                   <div class="clearfix"></div>
+                                                    <p><i>"El usario no posee comentarios ni calificaciones."</i></p>
+                                                </div>
+                                            </div>
+                                          <br>
+                                        </div>
+                                @endforelse 
+                            </div>
                     </div>
 
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">

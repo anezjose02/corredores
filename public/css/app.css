@@ -11730,3 +11730,8 @@ footer.footer {
   margin-top: -12px;
   color: #999;
 }
+
+
+#ex1Slider .slider-selection {
+	background: #BABABA;
+}

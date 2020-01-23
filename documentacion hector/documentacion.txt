@@ -34,4 +34,15 @@ https://laravel.io/forum/04-04-2016-set-the-page-title
 Composer killed while updating
 https://stackoverflow.com/questions/20667761/composer-killed-while-updating
 
+laravel-5-6-time-ago-in-views
+https://stackoverflow.com/questions/51420837/laravel-5-6-time-ago-in-views
+
+boton de slider usado:
+https://github.com/seiyria/bootstrap-slider
+https://seiyria.com/bootstrap-slider/#example-1
+
+snippet usado para ver los cometnario de otros usuarios:
+https://bootsnipp.com/snippets/M5obX
+
+
 

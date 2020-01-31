@@ -56,12 +56,16 @@ Route::post('calificanaturalescontroller','CalificanaturalesController@formSubmi
 
 Route::post('calificanaturalescontrollerupdate','CalificanaturalesController@store')->middleware('can:all-users');
 
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
 
     Route::resource('/users','UsersController', ['except' => ['show','create','store']]);
-
-
-
 });
 
-Route::resource('/perfil','GenericuserController')->middleware('can:generic-users');
+/*Route::namespace('Profile')->prefix('admin')->name('admin.')->group(function(){
+    Route::resource('/perfil', 'UserProfileController', ['except' => ['show', 'create', 'store', 'destroy']]);
+});*/
+//Route::resource('/perfil', 'Profile\UserProfileController', ['except' => ['show', 'create', 'store', 'destroy']])->name('admin.');
+
+Route::namespace('Profile')->name('user.')->group(function(){
+    Route::resource('/perfil', 'UserProfileController', ['except' => ['show']]);
+});

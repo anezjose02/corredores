@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Naturales;
+use App\users_profiles;
+use App\User;
 use Illuminate\Http\Request;
 
 class GenericuserController extends Controller
@@ -15,9 +17,17 @@ class GenericuserController extends Controller
   
     public function index()
     {
-       
-        $naturales = Naturales::all();
-        return view('genericuser.index')->with('naturales',$naturales); 
+       $user=auth()->user()->id;
+        //$naturales = Naturales::all();
+        //$users_profiles = users_profiles::all();
+        //$users = User::all();
+        //return view('genericuser.index')->with('users_profiles',$users_profiles)->with('users',$users); 
+        //$naturales = Naturales::get();
+        $users_profiles = users_profiles::where('profile_picture',$user)->get();
+                            //return $users_profiles;
+                            //dd($users_profiles);
+
+        return view('perfil.index', ['users_profiles' => $users_profiles],['user' => $user]);
 
     }
 
@@ -61,7 +71,17 @@ class GenericuserController extends Controller
      */
     public function edit(Naturales $naturales)
     {
-        //
+        $user=auth()->user()->id;
+        //$naturales = Naturales::all();
+        //$users_profiles = users_profiles::all();
+        //$users = User::all();
+        //return view('genericuser.index')->with('users_profiles',$users_profiles)->with('users',$users); 
+        //$naturales = Naturales::get();
+        $users_profiles = users_profiles::where('profile_picture',$user)->get();
+                            //return $users_profiles;
+                            //dd($users_profiles);
+
+        return view('perfil.edit', ['users_profiles' => $users_profiles],['user' => $user]);
     }
 
     /**

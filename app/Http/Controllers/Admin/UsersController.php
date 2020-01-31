@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-    public function __construct() //con esto hago que aqui solo entren usuarios logeados.
+    public function __construct()
     {
         $this->middleware('auth');
     }
@@ -21,43 +21,12 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
         $users = User::all();
-        return view('admin.users.index')->with('users',$users); //'User index page';
+        //return view('admin.users.index')->with('users',$users);
+        
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -66,19 +35,13 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        //
-       // dd($user);  //Dump variable en pantalla
-       
-       if(Gate::denies('edit-users'))
-       {
-           return redirect(route('admin.users.index')); 
-       }
-       $roles = Role::all();
+    
+        $roles = Role::all();
 
-       return view('admin.users.edit')->with([
-           'user' => $user,
-           'roles' => $roles
-       ]);
+        return view('admin.users.edit')->with([
+            'user' => $user,
+            'roles' => $roles
+        ]);
     }
 
     /**
@@ -90,24 +53,20 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
-       // dd($request); 
-       $user->roles()->sync($request->roles);
+       
+        $user->name = $request->name;
+        $user->profile_picture = $request->profile_picture;
+        
+        if($user->save()){
+            $request->session()->flash('success', $user->name . ' has been updated');
+        }else{
+            $request->session()->flash('error','There was an error updating the user');
+        }
+    
+        //$user->user = $request->user;
 
-       $user->name = $request->name;
-       $user->email = $request->email;
 
-       if($user->save())
-       {
-            $request->session()->flash('success' , $user->name . ' has been uddate');
-       }
-       else
-       {
-        $request->session()->flash('error' , 'Ocurrio un error actualizando a '. $user->name );
-       }
-   
-
-       return redirect()->route('admin.users.index'); 
+        return redirect()->route('user.perfil.index');
     }
 
     /**
@@ -118,15 +77,13 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
-        //
-        //dd($user);
-        if(Gate::denies('delete-users'))
-        {
-            return redirect(route('admin.users.index')); 
+        if(Gate::denies('delete-users')){
+            return redirect(route('admin.users.index'));
         }
-
+        
         $user->roles()->detach();
         $user->delete();
-        return redirect()->route('admin.users.index'); 
+
+        return redirect()->route('admin.users.index');
     }
 }

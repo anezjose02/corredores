@@ -3,51 +3,59 @@
 <br>
 <br>
 <br>
-<div class="card">
-  <h2 class="card-header">Bienvenido {{ auth()->user()->name }}</h2> 
-</div>
-<form>
-  <div class="form-row">
-    <div class="form-group col-md-3,5">
-      <div class="card" style="width: 22rem;">
-        @foreach ($user as $users)
-        <img src="{{Storage::url($users->profile_picture)}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <a href="{{ route('admin.users.edit', auth()->user()->id) }}" class="btn btn-primary">Ediar Perfil</a>
+<div class="container py-4 my-2">
+  @foreach ($user as $users)
+  <div class="row">
+      <div class="col-md-4 pr-md-5">
+        <div class="d-flex align-items-center">
+          <h2 class="font-weight-bold m-0">
+            Bienvenido {{ auth()->user()->name }}
+          </h2>
         </div>
+        <br>
+        <p class="h4 text-primary mt-2 d-block font-weight-light">
+          Foto de Perfil
+        </p>
+          <img class="w-100 rounded border" src="{{Storage::url($users->profile_picture)}}" />
       </div>
-    </div>
-      <div class="card-body-letf">
-      <div class="pt-4 mt-2">
-        <section class="mb-4 pb-1">
-          <div class="work-experience pt-2">
-            <div class="work mb-4">
-              <strong class="h5 d-block text-secondary font-weight-bold mb-1">Acerca de mi</strong>
-                   <p class="text-secondary"><h6>{{ $users->main_message}}</h></p>
-                   </div>
-              <div class="work mb-4">
-               <strong class="h5 d-block text-secondary font-weight-bold mb-1">Telefono de contacto</strong>
-                    <p class="text-secondary"><h6>{{ $users->number_phone}}</h6></p>
-                    </div>
-                <div class="work mb-4">
-                 <strong class="h5 d-block text-secondary font-weight-bold mb-1">Direccion</strong>
-                  <p class="text-secondary"><h6>{{ $users->address}}</h6></p>
-                  </div>
-                  <div class="work mb-4">
-                  <strong class="h5 d-block text-secondary font-weight-bold mb-1">Año de inicio como corredor de inmuebles</strong>
-                    <p class="text-secondary"><h6>{{ $users->license_year}}</h6></p>
-                 </div>
-               </div>    
-          @endforeach
-        </section>
+      <div class="col-md-8">
+      <br><br><br>
+          <p class="h4 text-primary mt-2 d-block font-weight-light">
+              Acerca de mi
+          </p>
+          <p class="h5 mt-4">
+            {{ $users->main_message}}
+          </p>
+
+          <p class="h4 text-primary mt-2 d-block font-weight-light">
+            Telefono de contacto
+          </p>
+          <p class="h5 mt-4">
+          {{ $users->number_phone}}
+          </p>
+
+          <p class="h4 text-primary mt-2 d-block font-weight-light">
+            Año de inicio como corredor de inmuebles
+          </p>
+          <p class="h5 mt-4">
+          {{ $users->license_year}}
+          </p>
+
+          <p class="h4 text-primary mt-2 d-block font-weight-light">
+            Direccion
+          </p>
+          <p class="h5 mt-4">
+          {{ $users->address}}
+          </p>
+          <br>
+          <div class="form-row">       
+            <div>
+            <a href="{{ route('admin.users.edit', auth()->user()->id) }}" class="btn btn-block btn-lg btn-primary">Editar Perfil</a>
+            </div>
+            </div>   
+        </section> 
       </div>
+      @endforeach
+
     </div>
   </div>
-</form>
-
-
-  
-  
-    
-
-@endsection

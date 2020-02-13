@@ -53,9 +53,15 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-       
+        if ($request->hasfile('profile_picture')) 
+        {
+            $user->profile_picture = $request->file('profile_picture')->store('public');
+        }
         $user->name = $request->name;
-        $user->profile_picture = $request->profile_picture;
+        $user->main_message = $request->main_message;
+        $user->number_phone = $request->number_phone;
+        $user->license_year = $request->license_year;
+        $user->address = $request->address;
         
         if($user->save()){
             $request->session()->flash('success', $user->name . ' has been updated');

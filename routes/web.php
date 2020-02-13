@@ -67,5 +67,5 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
 //Route::resource('/perfil', 'Profile\UserProfileController', ['except' => ['show', 'create', 'store', 'destroy']])->name('admin.');
 
 Route::namespace('Profile')->name('user.')->group(function(){
-    Route::resource('/perfil', 'UserProfileController', ['except' => ['show']]);
+    Route::resource('/perfil', 'UserProfileController', ['except' => ['show', 'create', 'store', 'update', 'destroy', 'edit']]);
 });

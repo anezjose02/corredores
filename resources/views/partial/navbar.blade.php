@@ -55,9 +55,11 @@
                             </form>
 
                             <a class="dropdown-item" href="{{ route('user.perfil.index')}}">
-                              Edit Profile
+                              Perfil de Usuario
                             </a> 
+
                             
+              
                         </div>
                     </li>
                 @endguest

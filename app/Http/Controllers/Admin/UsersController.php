@@ -22,6 +22,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
+        $roles = Role::all();
         //return view('admin.users.index')->with('users',$users);
         
     }
@@ -44,6 +45,17 @@ class UsersController extends Controller
         ]);
     }
 
+    public function premiunrol(User $user)
+    {
+    
+        $roles = Role::all();
+
+        return view('admin.users.edit')->with([
+            'user' => $user,
+            'roles' => $roles
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -53,10 +65,37 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        //return $request->no_lic_pn;
         if ($request->hasfile('profile_picture')) 
         {
             $user->profile_picture = $request->file('profile_picture')->store('public');
         }
+        if ($request->id_admin == 99)
+        {
+            //return $request;
+            $user->roles()->sync($request->roles);
+            //$user->id_role = $request->roles;
+        }
+        if ($request->id_role == 4)
+        {
+           $user->id_role = $request->id_role;
+        }
+        if ($request->id_role == 5)
+        {
+           $user->id_role = $request->id_role;
+        }
+        
+        //$user->id_role = $request->id_role;
+        $user->no_lic_pn = $request->no_lic_pn;
+        //$user->reputacion = $request->reputacion;
+        $user->fecha_emision = $request->fecha_emision;
+        $user->fecha_vencimiento = $request->fecha_vencimiento;
+        $user->nombre_idoneidad = $request->nombre_idoneidad;
+        $user->status = $request->status;
+        $user->no_lic = $request->no_lic;
+        $user->nombre_sociedad_anonima = $request->nombre_sociedad_anonima;
+        $user->suspendidos_cancel_hasta_la_fecha = $request->suspendidos_cancel_hasta_la_fecha;
+        $user->nombre_representante_legal = $request->nombre_representante_legal;
         $user->name = $request->name;
         $user->main_message = $request->main_message;
         $user->number_phone = $request->number_phone;
@@ -71,7 +110,10 @@ class UsersController extends Controller
     
         //$user->user = $request->user;
 
-
+        if ($request->id_admin == 99)
+        {
+            return redirect()->route('usuarios.index');
+        }
         return redirect()->route('user.perfil.index');
     }
 
@@ -82,14 +124,16 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
+    
     {
+        /*dd($user);
         if(Gate::denies('delete-users')){
             return redirect(route('admin.users.index'));
-        }
+        }*/
         
         $user->roles()->detach();
         $user->delete();
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('usuarios.index');
     }
 }

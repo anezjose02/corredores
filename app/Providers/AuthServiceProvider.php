@@ -57,9 +57,28 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('generic-users', function($user)
         {
-            return $user->hasRole('user'); //Cheque si el usuario tiene rol de admin
+            return $user->hasRole('user'); //Cheque si el usuario tiene rol de usuario
 
         });
-        //
+
+        Gate::define('onlynatural-users', function($user)
+        {
+            return $user->hasRole('natural'); //Cheque si el usuario tiene rol de natural
+
+        });
+
+        Gate::define('natural-users', function($user)
+        {
+            return $user->hasAnyRoles(['admin', 'natural']); //Cheque si el usuario tiene rol de natural y administrador
+
+        });
+
+        Gate::define('juridico-users', function($user)
+        {
+            return $user->hasAnyRoles(['admin', 'juridico']); //Cheque si el usuario tiene rol de juridico y administrador
+
+        });
+
+        
     }
 }

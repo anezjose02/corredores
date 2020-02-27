@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Roles;
 
-use App\Juridicos;
+use App\Http\Controllers\Controller;
 use App\User;
 use App\Role;
 use Gate;
 use Illuminate\Http\Request;
 
-class CorredorjuridicoController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,15 +18,6 @@ class CorredorjuridicoController extends Controller
     public function index()
     {
         //
-        $juridicos = Juridicos::get();
-        $user = User::get();
-        $roles = Role::all();
-
-        return view('admin.juridicos.index')->with([
-            'user' => $user,
-            'roles' => $roles,
-            'juridicos' => $juridicos
-        ]);
     }
 
     /**
@@ -53,10 +44,10 @@ class CorredorjuridicoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Juridicos  $juridicos
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Juridicos $juridicos)
+    public function show(User $user)
     {
         //
     }
@@ -64,33 +55,41 @@ class CorredorjuridicoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Juridicos  $juridicos
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Juridicos $juridicos)
+    public function edit(User $user)
     {
-        //
+        $id =auth()->user()->id;
+        //$users = User::where('id', $id)->get();
+        $roles = Role::where('id','>=','4')->get();
+        return view('role.edit')->with([
+            'roles' => $roles,
+            'user' => $user
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Juridicos  $juridicos
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Juridicos $juridicos)
+    public function update(Request $request, User $user)
     {
-        //
+        //return $request;
+        $user->roles()->sync($request->roles);
+        return redirect()->route('user.perfil.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Juridicos  $juridicos
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Juridicos $juridicos)
+    public function destroy(User $user)
     {
         //
     }

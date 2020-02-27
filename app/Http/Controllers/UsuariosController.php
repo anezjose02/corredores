@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Juridicos;
-use App\User;
-use App\Role;
-use Gate;
 use Illuminate\Http\Request;
-
-class CorredorjuridicoController extends Controller
+use App\User;
+class UsuariosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,16 +13,8 @@ class CorredorjuridicoController extends Controller
      */
     public function index()
     {
-        //
-        $juridicos = Juridicos::get();
-        $user = User::get();
-        $roles = Role::all();
-
-        return view('admin.juridicos.index')->with([
-            'user' => $user,
-            'roles' => $roles,
-            'juridicos' => $juridicos
-        ]);
+        $usuarios = User::get();
+        return view('admin.usuarios.index', ['usuarios' => $usuarios]);
     }
 
     /**
@@ -53,10 +41,10 @@ class CorredorjuridicoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Juridicos  $juridicos
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Juridicos $juridicos)
+    public function show($id)
     {
         //
     }
@@ -64,10 +52,10 @@ class CorredorjuridicoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Juridicos  $juridicos
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Juridicos $juridicos)
+    public function edit($id)
     {
         //
     }
@@ -76,10 +64,10 @@ class CorredorjuridicoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Juridicos  $juridicos
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Juridicos $juridicos)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -87,10 +75,10 @@ class CorredorjuridicoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Juridicos  $juridicos
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Juridicos $juridicos)
+    public function destroy($id)
     {
         //
     }

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Naturales;
+use App\User;
+use App\Role;
+use Gate;
 use Illuminate\Http\Request;
 
 class CorredornaturalController extends Controller
@@ -16,8 +19,14 @@ class CorredornaturalController extends Controller
     {
         //
         $naturales = Naturales::get();
+        $user = User::get();
+        $roles = Role::all();
 
-        return view('admin.naturales.index', ['naturales' => $naturales]);
+        return view('admin.naturales.index')->with([
+            'user' => $user,
+            'roles' => $roles,
+            'naturales' => $naturales
+        ]);
 
       //  return view('admin.naturales.index');
     }

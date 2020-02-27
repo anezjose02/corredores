@@ -43,7 +43,11 @@ Route::resource('juridicos','CorredorjuridicoController');
 
 Route::resource('naturales','CorredornaturalController');
 
+Route::resource('usuarios','UsuariosController');
+
 Route::get('checknaturalescontroller', 'ChecknaturalesController@index');
+
+//Route::get('admin/users/{user}/premiunrol', 'UsersController@premiunrol');
 
 Route::post('vernaturalescontroller','ChecknaturalesController@verNatural');
 
@@ -67,5 +71,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
 //Route::resource('/perfil', 'Profile\UserProfileController', ['except' => ['show', 'create', 'store', 'destroy']])->name('admin.');
 
 Route::namespace('Profile')->name('user.')->group(function(){
-    Route::resource('/perfil', 'UserProfileController', ['except' => ['show', 'create', 'store', 'update', 'destroy', 'edit']]);
+    Route::resource('/perfil', 'UserProfileController', ['except' => ['create', 'store', 'update', 'destroy', 'edit']]);
 });
+
+Route::resource('role', 'Roles\RoleController');
+
+
+

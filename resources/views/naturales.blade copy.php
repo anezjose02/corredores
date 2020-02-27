@@ -15,7 +15,7 @@
                     
               <!--  <th>Id</th> -->  
                 <th>Numero de Licencia</th>
-                
+                <th>Reputacion</th>
                 <th>Nombre Idoneidad</th>
                 <th>Email</th>
                 <th>Fecha Emision</th>
@@ -28,7 +28,7 @@
               <tr>
                  <!--  <th>Id</th> -->  
                       <th>Numero de Licencia</th>
-                      
+                      <th>Reputacion</th>
                       <th>Nombre Idoneidad</th>
                       <th>Email</th>
                       <th>Fecha Emision</th>
@@ -40,26 +40,28 @@
             <tbody>
 
 
-                  @foreach ($user  as $users)
+                  @foreach ($naturales as $natural)
                   <tr>
-                     <!--  <td> {{$users->id}}  </td> -->  
+                     <!--  <td> {{$natural->id_natural}}  </td> -->  
                      
                          
                      
-                      <td>{{$users->no_lic_pn}} </td>
-                      
-                      <td>{{$users->nombre_idoneidad}} </td>
-                      <td>{{$users->email}} </td>
-                      <td>{{$users->fecha_emision}} </td>
-                      <td>{{$users->fecha_vencimiento}} </td>
-                      <td>{{$users->status}} </td>
+                      <td>{{$natural->no_lic_pn}} </td>
+                      <td>{{$natural->reputacion}} </td>
+                      <td>{{$natural->nombre_idoneidad}} </td>
+                      <td>{{$natural->email}} </td>
+                      <td>{{$natural->fecha_emision}} </td>
+                      <td>{{$natural->fecha_vencimiento}} </td>
+                      <td>{{$natural->status}} </td>
 
                       <td>
                         
                           <form action="vernaturalescontroller" method="POST">
+              
+                            
                               <div class="form-row">
                                   <div>
-                                      <input type="hidden" name="elid" value={{$users->id}}>
+                                      <input type="hidden" name="elid" value={{$natural->id_natural}}>
                                       @csrf 
                                     </div>
                                   <div>
@@ -68,7 +70,7 @@
                                   </div>
                               </div>
                           </form>
-  
+                      
                       </td>
  
 

@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use App\Juridicos;
-use App\User;
+namespace App\Http\Controllers\Roles;
 use App\Role;
-use Gate;
+use App\User;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CorredorjuridicoController extends Controller
+class RolesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,16 +15,7 @@ class CorredorjuridicoController extends Controller
      */
     public function index()
     {
-        //
-        $juridicos = Juridicos::get();
-        $user = User::get();
-        $roles = Role::all();
-
-        return view('admin.juridicos.index')->with([
-            'user' => $user,
-            'roles' => $roles,
-            'juridicos' => $juridicos
-        ]);
+        return 'user index page';
     }
 
     /**
@@ -53,10 +42,10 @@ class CorredorjuridicoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Juridicos  $juridicos
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Juridicos $juridicos)
+    public function show($id)
     {
         //
     }
@@ -64,33 +53,49 @@ class CorredorjuridicoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Juridicos  $juridicos
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Juridicos $juridicos)
+    public function edit($id)
     {
-        //
+        $id =auth()->user()->id;
+        $users = User::where('id', $id)->get();
+        $roles = Role::where('id','>=','4')->get();
+        return view('role.edit')->with([
+            'roles' => $roles,
+            'user' => $users
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Juridicos  $juridicos
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Juridicos $juridicos)
+    public function update(Request $request, User $user)
     {
-        //
+        //return $request;
+        
+        //$user->roles()->sync($request->roles);
+        $user->role_id = $request->role_id;
+        $user->user_id = $request->user_id;
+        //return $user;
+        //$role->id_role = $request->roles;
+        $user->save();
+        return redirect()->route('user.perfil.index');
     }
+
+    
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Juridicos  $juridicos
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Juridicos $juridicos)
+    public function destroy($id)
     {
         //
     }
